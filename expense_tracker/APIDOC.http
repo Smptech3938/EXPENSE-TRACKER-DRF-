@@ -1,0 +1,167 @@
+# API call to create expense
+###
+POST http://127.0.0.1:8000/expenses/ 
+Authorization: Basic sparrow:sparrow
+Content-Type: application/json
+
+{
+    "title":"Lunch",
+    "amount":"150.00",
+    "category":"food",
+    "payment":"upi"
+}
+
+# API call for lisitng all expenses
+###
+GET http://127.0.0.1:8000/expenses/ 
+Authorization: Basic sparrow:sparrow
+
+# GET expense by id
+###
+GET http://127.0.0.1:8000/expenses/1/
+Authorization: Basic sparrow:sparrow
+
+
+# API call for update
+###
+PUT http://127.0.0.1:8000/expenses/1/
+Authorization: Basic sparrow:sparrow
+Content-Type: application/json
+
+{
+    "title": "Dinner",
+    "amount": "250.00",
+    "category": "food",
+    "payment": "upi"
+}
+
+# API call for partially update expense
+###
+PATCH http://127.0.0.1:8000/expenses/1/
+Authorization: Basic sparrow:sparrow
+Content-Type: application/json
+
+{
+    "amount":"300.00"
+}
+
+# API to delete expense
+###
+DELETE http://127.0.0.1:8000/expenses/1/
+Authorization: Basic sparrow:sparrow
+
+# API call to create new user
+###
+POST http://127.0.0.1:8000/register/
+Content-Type: application/json
+
+{
+    "username":"test1",
+    "email":"test1@gmail.com",
+    "password":"test1"
+}
+
+# ---------Expense Adding-------------
+
+# Add first expense
+###
+POST http://127.0.0.1:8000/expenses/
+Authorization: Basic test1:test1
+Content-Type: application/json
+
+{
+    "title": "Lunch",
+    "amount": "150.00",
+    "category": "food",
+    "payment": "upi"
+}
+
+
+# Add second expense
+###
+POST http://127.0.0.1:8000/expenses/
+Authorization: Basic test1:test1
+Content-Type: application/json
+
+{
+    "title": "Electricity Bill",
+    "amount": "850.00",
+    "category": "bill",
+    "payment": "card"
+}
+
+
+# Add third expense
+###
+POST http://127.0.0.1:8000/expenses/
+Authorization: Basic test1:test1
+Content-Type: application/json
+
+{
+    "title": "Petrol",
+    "amount": "500.00",
+    "category": "fuel",
+    "payment": "upi"
+}
+
+
+# Add fourth expense
+###
+POST http://127.0.0.1:8000/expenses/
+Authorization: Basic test1:test1
+Content-Type: application/json
+
+{
+    "title": "Dinner",
+    "amount": "250.00",
+    "category": "food",
+    "payment": "card"
+}
+
+# view all expenses
+###
+GET http://127.0.0.1:8000/expenses/
+Authorization: Basic test1:test1
+
+# -------------FILTER BY ---------------------
+
+# FILTER BY CATEGORY
+###
+GET http://127.0.0.1:8000/expenses/?category=food
+Authorization: Basic test1:test1
+
+# FILTER BY PAYMENT METHOD
+###
+GET http://127.0.0.1:8000/expenses/?payment=card
+Authorization: Basic test1:test1
+
+# -----------------SEARCH-----------------
+
+# SEARCH BY TITLE
+###
+GET http://127.0.0.1:8000/expenses/?search=Petrol
+Authorization: Basic test1:test1
+
+# -------------------ORDERING--------------
+# ORDER BY AMOUNT(LOWEST AMOUNT FIRST)
+###
+GET http://127.0.0.1:8000/expenses/?ordering=amount
+Authorization: Basic test1:test1
+
+# ORDER BY AMOUNT(HIGHEST AMOUNT FIRST)
+###
+GET http://127.0.0.1:8000/expenses/?ordering=-amount
+Authorization: Basic test1:test1
+
+# Latest expenses first
+###
+GET http://127.0.0.1:8000/expenses/?ordering=-created_at
+Authorization: Basic test1:test1
+
+# ------------------COMBINED FILTERS-------------
+
+# Food expenses ordered by highest amount
+###
+GET http://127.0.0.1:8000/expenses/?category=food&ordering=-amount
+Authorization: Basic test1:test1
+
